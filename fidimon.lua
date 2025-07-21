@@ -31,7 +31,7 @@ local current_time = os.time()
 local delay = 2
 local last_ran_time = 0
 
---- For files without extensions or full file_names, an `_` can be used in front of the filename. e.g. `_lua` or `_luamon.lua`
+--- For files without extensions or full file_names, an `_` can be used in front of the filename. e.g. `_lua` or `_fidimon.lua`
 --- Fields `exclude_file_types` and `include_file_types` can not be present at the same time
 ---@class Config
 ---@field exclude_file_types? string[] File types to be ignored (e.g., {"lua"})
@@ -135,14 +135,14 @@ end
 
   Usage:
   ```lua
-  local luamon = require("luamon")
-  luamon("/absolute/path", function()
+  local fidimon = require("fidimon")
+  fidimon("/absolute/path", function()
     print("Something changed!")
   end)
 
   -- If the directory is nil, it will use the current directory of the running process
-  local luamon = require("luamon")
-  luamon(nil, function(changed_file)
+  local fidimon = require("fidimon")
+  fidimon(nil, function(changed_file)
     if changed_file then
       print(changed_file .. " has changed")
     end
@@ -155,7 +155,7 @@ end
     recursive = true,
     delay = 4
   }
-  luamon(nil, function(changed_file)
+  fidimon(nil, function(changed_file)
     if changed_file then
       print(changed_file .. " has changed")
     end
@@ -165,7 +165,7 @@ end
 ---@param dir? string Absolute path to directory (defaults to current working directory)
 ---@param callback fun(changed_file: string?): nil Function to call on file change
 ---@param config? Config
-local function luamon(dir, callback, config)
+local function fidimon(dir, callback, config)
   if dir then
     assert(dir:match("^/"), "Directory must be an absolute path: '" .. dir .. "'")
   else
@@ -190,4 +190,4 @@ local function luamon(dir, callback, config)
   end
 end
 
-return luamon
+return fidimon

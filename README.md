@@ -1,4 +1,4 @@
-# luamon
+# fidimon (FIle DIrectory MONitor)
 
 Monitors file changes in a directory and calls a callback function on any file modification\
 **NB**: This currently does not monitor file name changes as they do not count as file modifications
@@ -7,18 +7,18 @@ Monitors file changes in a directory and calls a callback function on any file m
 - [luafilesystem](https://lunarmodules.github.io/luafilesystem)
 
 ## How to install
-Copy `luamon.lua` into your project and require it
+Copy `fidimon.lua` into your project and require it
 
 ## Usage:
 ```lua
-local luamon = require("luamon")
-luamon("/absolute/path", function()
+local fidimon = require("fidimon")
+fidimon("/absolute/path", function()
   print("Something changed!")
 end)
 
 -- If the directory is nil, it will use the current directory of the running process
-local luamon = require("luamon")
-luamon(nil, function(changed_file)
+local fidimon = require("fidimon")
+fidimon(nil, function(changed_file)
   if changed_file then
     print(changed_file .. " has changed")
   end
@@ -31,8 +31,14 @@ local config = {
   recursive = true,
   delay = 4
 }
-luamon(nil, function(changed_file)
+fidimon(nil, function(changed_file)
   if changed_file then
     print(changed_file .. " has changed")
   end
 end, config)
+```
+
+## Acknowledgement
+
+- Thank you stefanos82 on the [nelua discord](https://discord.gg/7aaGeG7) for the name
+- Originally called luamon but found out that project existed [here](https://github.com/edubart/luamon)
